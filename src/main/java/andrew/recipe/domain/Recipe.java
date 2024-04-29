@@ -7,14 +7,21 @@ import java.util.Set;
 @Entity
 public class Recipe {
 
-    @OneToMany(cascade =  CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany(cascade =  CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
+
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
+
+    @Lob
+    private Byte[] image;
 
     private String description;
     private Integer prepTime;
@@ -23,7 +30,12 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
-    // to do - difficulty
+
+    @ManyToMany
+    @JoinTable(name = "recipe_category",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 
     public Set<Ingredient> getIngredients() {
         return ingredients;
@@ -41,8 +53,21 @@ public class Recipe {
         this.id = id;
     }
 
-    @Lob
-    private Byte[] image;
+    public Notes getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Notes notes) {
+        this.notes = notes;
+    }
+
+    public Byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(Byte[] image) {
+        this.image = image;
+    }
 
     public String getDescription() {
         return description;
@@ -100,19 +125,19 @@ public class Recipe {
         this.directions = directions;
     }
 
-    public Byte[] getImage() {
-        return image;
+    public Difficulty getDifficulty() {
+        return difficulty;
     }
 
-    public void setImage(Byte[] image) {
-        this.image = image;
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
-    public Notes getNotes() {
-        return notes;
+    public Set<Category> getCategories() {
+        return categories;
     }
 
-    public void setNotes(Notes notes) {
-        this.notes = notes;
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
