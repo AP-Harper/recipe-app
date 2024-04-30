@@ -49,6 +49,16 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public void addIngredient(Ingredient ingredient) {
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+    }
+
+    public void removeIngredient(Ingredient ingredient) {
+        ingredient.getRecipe().removeIngredient(ingredient);
+        this.ingredients.remove(ingredient);
+    }
+
     public Long getId() {
         return id;
     }
@@ -62,6 +72,8 @@ public class Recipe {
     }
 
     public void setNotes(Notes notes) {
+        this.notes = notes;
+        notes.setRecipe(this);
         this.notes = notes;
     }
 
