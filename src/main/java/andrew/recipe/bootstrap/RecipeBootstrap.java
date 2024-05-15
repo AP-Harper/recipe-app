@@ -122,6 +122,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         Recipe tacos = new Recipe();
         tacos.setDescription("Spicy Grilled Chicken Taco");
         tacos.setCookTime(9);
+        tacos.setServings(4);
+        tacos.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
+        tacos.setSource("Simply Recipes");
         tacos.setPrepTime(20);
         tacos.setDifficulty(Difficulty.MODERATE);
 
