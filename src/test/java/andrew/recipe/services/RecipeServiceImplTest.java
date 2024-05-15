@@ -56,4 +56,19 @@ class RecipeServiceImplTest {
     }
 
 
+    @Test
+    void findByName() {
+        Recipe recipe = new Recipe();
+        recipe.setDescription("Tortilla Espanola");
+        recipeRepository.save(recipe);
+        Recipe retunedRecipe = recipeService.findByName("Tortilla Espanola");
+        System.out.println(retunedRecipe.getDescription());
+
+        assertNotNull(retunedRecipe);
+        assertEquals(recipe.getDescription(), retunedRecipe.getDescription());
+
+    }
+
+
+
 }

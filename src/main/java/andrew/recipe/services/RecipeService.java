@@ -13,4 +13,7 @@ public interface RecipeService {
 
     Recipe findByID(Long l);
 
+    Recipe findByName(String name);
+
+
 }
