@@ -24,7 +24,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     private final RecipeRepository recipeRepository;
     private final UnitOfMeasureRepository unitOfMeasureRepository;
 
-    public RecipeBootstrap(CategoryRepository categoryRepository, RecipeRepository recipeRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
+    public RecipeBootstrap(CategoryRepository categoryRepository, RecipeRepository recipeRepository,
+                           UnitOfMeasureRepository unitOfMeasureRepository) {
         this.categoryRepository = categoryRepository;
         this.recipeRepository = recipeRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
@@ -72,6 +73,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         Recipe guacamole = new Recipe();
         guacamole.setDescription("Perfect Guacamole");
         guacamole.setCookTime(10);
+        guacamole.setPrepTime(15);
         guacamole.setDifficulty(Difficulty.EASY);
         guacamole.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon" +
                 "\n" +
@@ -96,7 +98,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws");
 
         guacamole.setNotes(guacNotes);
-
+        guacamole.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
+        guacamole.setSource("Simply Recipes");
+        guacamole.setServings(4);
         guacamole.getIngredients().add(new Ingredient("ripe avocados", new BigDecimal(2), each));
 
         guacamole.addIngredient(new Ingredient("Kosher salt", new BigDecimal(".5"), teaspoon));
