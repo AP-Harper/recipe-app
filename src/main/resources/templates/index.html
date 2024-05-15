@@ -47,7 +47,7 @@
                             </tr>
                             <tr th:each="recipe : ${recipes}">
                                 <td th:text="${recipe.id}">334</td>
-                                <td th:text="${recipe.description}"> <a href="#" th:href="@{'/recipe/show/' +${recipe.id}}"> Recipe 3 </a></td>
+                                <td> <a th:text="${recipe.description}" href="#" th:href="@{'/recipe/show/' +${recipe.id}}"> Recipe 3 </a></td>
                                 <td> <a href="#" th:href="@{'/recipe/show/' +${recipe.id}}"> View </a></td>
                             </tr>
                         </table>

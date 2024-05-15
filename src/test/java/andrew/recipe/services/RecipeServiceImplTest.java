@@ -60,9 +60,10 @@ class RecipeServiceImplTest {
     void findByName() {
         Recipe recipe = new Recipe();
         recipe.setDescription("Tortilla Espanola");
-        recipeRepository.save(recipe);
+        Optional<Recipe> recipeOptional = Optional.of(recipe);
+        when(recipeRepository.findByDescription(anyString())).thenReturn(recipeOptional);
+
         Recipe retunedRecipe = recipeService.findByName("Tortilla Espanola");
-        System.out.println(retunedRecipe.getDescription());
 
         assertNotNull(retunedRecipe);
         assertEquals(recipe.getDescription(), retunedRecipe.getDescription());

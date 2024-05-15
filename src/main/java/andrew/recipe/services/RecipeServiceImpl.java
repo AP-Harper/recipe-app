@@ -43,16 +43,24 @@ class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe findByName(String name) {
-        Recipe recipeToReturn = new Recipe();
-        for (Recipe rec: getRecipes()) {
-            if (rec.getDescription().equals(name)) {
-                recipeToReturn = rec;
-            } else {
-                throw new RuntimeException("Recipe not found");
-            }
+
+        Optional<Recipe> recipeOptional = recipeRepository.findByDescription(name);
+
+        if (recipeOptional.isEmpty()) {
+            throw new RuntimeException("Recipe not found");
         }
-        return recipeToReturn;
+        return recipeOptional.get();
+
+//        Recipe recipeToReturn = new Recipe();
+//        for (Recipe rec: getRecipes()) {
+//            if (rec.getDescription().equals(name)) {
+//                recipeToReturn = rec;
+//            } else {
+//                throw new RuntimeException("Recipe not found");
+//            }
+//        }
+//        return recipeToReturn;
+//    }
+
     }
-
-
 }
